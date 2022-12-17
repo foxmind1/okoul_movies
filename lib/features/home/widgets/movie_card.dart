@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okoul_movie/features/movie_details/views/movie_details.dart';
 import 'package:okoul_movie/models/movie.dart';
 
 class MovieCard extends StatelessWidget {
@@ -10,13 +11,22 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 16.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Image.network(
-          movie.posterLink!,
-          fit: BoxFit.fitHeight,
-          height: 250,
+      child: GestureDetector(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.network(
+            movie.posterLink!,
+            fit: BoxFit.fitHeight,
+            height: 250,
+          ),
         ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => MovieDetailsPage(movie: movie),
+            ),
+          );
+        },
       ),
     );
   }

@@ -14,7 +14,9 @@ class Cast {
   Cast.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    profilePath = json['profile_path'];
+    profilePath = json['profile_path'] == null
+        ? ""
+        : "https://image.tmdb.org/t/p/w185${json['profile_path']}";
     character = json['character'];
   }
 

@@ -21,9 +21,15 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text("Movies", style: TextStyle(fontSize: 40)),
-                    Icon(Icons.favorite),
+                  children: [
+                    const Text("Movies", style: TextStyle(fontSize: 40)),
+                    Row(
+                      children: const [
+                        Icon(Icons.search),
+                        SizedBox(width: 16),
+                        Icon(Icons.favorite),
+                      ],
+                    ),
                   ],
                 ),
               ),
