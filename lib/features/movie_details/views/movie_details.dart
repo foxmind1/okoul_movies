@@ -9,8 +9,9 @@ class MovieDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(movie.name!),
+        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
             onPressed: () {},
@@ -21,22 +22,10 @@ class MovieDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Image.network(
-                  movie.backdropLink!,
-                  fit: BoxFit.fill,
-                ),
-                Positioned(
-                  bottom: 1,
-                  left: 8,
-                  child: Text(
-                    overflow: TextOverflow.ellipsis,
-                    movie.name!,
-                    style: const TextStyle(fontSize: 22),
-                  ),
-                )
-              ],
+            Image.network(
+              movie.backdropLink!,
+              fit: BoxFit.fill,
+              opacity: const AlwaysStoppedAnimation(0.3),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -46,6 +35,14 @@ class MovieDetailsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    movie.name!,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -61,6 +58,12 @@ class MovieDetailsPage extends StatelessWidget {
                         ),
                       ),
                       const Text("/10"),
+                      Text(
+                        ' - ${movie.numOfReviews} Reviews',
+                        style: const TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
                     ],
                   ),
                   const Divider(),

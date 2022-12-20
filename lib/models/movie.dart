@@ -4,10 +4,11 @@ class Movie {
   String? posterLink;
   String? backdropLink;
   String? rating;
+  String? numOfReviews;
   String? description;
 
   Movie(this.id, this.name, this.posterLink, this.backdropLink, this.rating,
-      this.description);
+      this.numOfReviews, this.description);
 
   Movie.fromJson(Map<String, dynamic> json) {
     //TODO: Handle images being null same as cast
@@ -15,7 +16,8 @@ class Movie {
     name = json['title'];
     posterLink = "https://image.tmdb.org/t/p/w185${json['poster_path']}";
     backdropLink = "https://image.tmdb.org/t/p/w500${json['backdrop_path']}";
-    rating = json['vote_average'].toString();
+    rating = json['vote_average'].toStringAsPrecision(3);
+    numOfReviews = json['vote_count'].toString();
     description = json['overview'];
   }
 
@@ -27,6 +29,7 @@ class Movie {
     data['poster_path'] = posterLink;
     data['backdrop_path'] = backdropLink;
     data['vote_average'] = rating;
+    data['vote_count'] = numOfReviews;
     data['overview'] = description;
     return data;
   }
