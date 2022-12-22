@@ -9,23 +9,29 @@ class CastListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: FutureBuilder(
-        future: ApiServives.getCast(id),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return Row(
-            children: [
-              ...snapshot.data
-                  .map(
-                    (cast) => CastCard(
-                      cast: cast,
-                    ),
-                  )
-                  .toList()
-            ],
-          );
-        },
+    return Center(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: FutureBuilder(
+          future: ApiServives.getCast(id),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else {
+              return Row(
+                children: [
+                  ...snapshot.data
+                      .map(
+                        (cast) => CastCard(
+                          cast: cast,
+                        ),
+                      )
+                      .toList()
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }

@@ -18,4 +18,7 @@ class ApiConstants {
 
   static String cast =
       "https://api.themoviedb.org/3/movie//credits?api_key=$apiKey";
+
+  static String genres =
+      'https://api.themoviedb.org/3/genre/movie/list?api_key=$apiKey';
 }

@@ -58,4 +58,14 @@ class ApiServives {
         .map((cast) => Cast.fromJson(cast))
         .toList();
   }
+
+  static Future<List> getGenres() async {
+    final response = await http.get(
+      Uri.parse(ApiConstants.genres),
+    );
+
+    return (jsonDecode(response.body)['genres'] as List)
+        .map((genre) => genre['name'])
+        .toList();
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:okoul_movie/features/favorite_movies/providers/favorite_movies_provider.dart';
 import 'package:okoul_movie/features/movie_details/views/cast_list_view.dart';
 import 'package:okoul_movie/models/movie.dart';
+import 'package:provider/provider.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   final Movie movie;
@@ -13,10 +15,18 @@ class MovieDetailsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite_outline),
-          )
+          Consumer<FavoriteMovieProvider>(
+            builder: (context, controler, _) {
+              return IconButton(
+                onPressed: () {
+                  controler.toggleFavorite(movie);
+                },
+                icon: controler.isFavorite(movie)
+                    ? const Icon(Icons.favorite)
+                    : const Icon(Icons.favorite_outline),
+              );
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(

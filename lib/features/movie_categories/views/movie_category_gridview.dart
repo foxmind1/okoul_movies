@@ -4,10 +4,10 @@ import 'package:okoul_movie/features/home/widgets/movie_card.dart';
 import 'package:okoul_movie/models/movie.dart';
 import 'package:okoul_movie/services/api_services.dart';
 
-class MovieListView extends StatelessWidget {
+class MovieCategoryGridview extends StatelessWidget {
   final MovieListType movieListType;
 
-  const MovieListView({Key? key, required this.movieListType})
+  const MovieCategoryGridview({Key? key, required this.movieListType})
       : super(key: key);
 
   @override
@@ -20,24 +20,25 @@ class MovieListView extends StatelessWidget {
     } else {
       future = ApiServives.getUpcoming();
     }
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Center(
       child: FutureBuilder(
         future: future,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
+        builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
           }
-          return Row(
-            children: [
-              ...snapshot.data
-                  .map(
-                    (movie) => MovieCard(
-                      movie: movie,
-                    ),
-                  )
-                  .toList()
-            ],
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              childAspectRatio: 3 / 4,
+            ),
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index) {
+              return MovieCard(
+                movie: snapshot.data[index],
+              );
+            },
           );
         },
       ),
