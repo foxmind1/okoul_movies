@@ -17,7 +17,7 @@ class MovieCard extends StatelessWidget {
           child: Image.network(
             movie.posterLink!,
             fit: BoxFit.fitHeight,
-            height: 250,
+            height: 225,
           ),
         ),
         onTap: () {

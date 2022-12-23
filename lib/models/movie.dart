@@ -26,10 +26,10 @@ class Movie {
 
     data['id'] = id;
     data['title'] = name;
-    data['poster_path'] = posterLink;
-    data['backdrop_path'] = backdropLink;
-    data['vote_average'] = rating;
-    data['vote_count'] = numOfReviews;
+    data['poster_path'] = '/${posterLink!.split('/')[6]}';
+    data['backdrop_path'] = '/${backdropLink!.split('/')[6]}';
+    data['vote_average'] = double.parse(rating!);
+    data['vote_count'] = int.parse(numOfReviews!);
     data['overview'] = description;
     return data;
   }

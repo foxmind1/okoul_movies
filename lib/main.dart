@@ -2,9 +2,12 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:okoul_movie/features/favorite_movies/providers/favorite_movies_provider.dart';
 import 'package:okoul_movie/features/home/views/home.dart';
+import 'package:okoul_movie/services/prefs_services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  PrefsServices().initPrefs();
   runApp(
     ChangeNotifierProvider(
       create: (context) => FavoriteMovieProvider(),
