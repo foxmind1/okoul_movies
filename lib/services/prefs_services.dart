@@ -12,26 +12,26 @@ class PrefsServices {
   }
 
   static void addToFavorites(Movie movie) {
-    var currentFavorites = getPrefsFavorites();
+    var currentFavorites = _getPrefsFavorites();
 
     currentFavorites.add(json.encode(movie.toJson()));
     _preferences.setStringList(PrefsConstants.favoritesKey, currentFavorites);
   }
 
   static void removeFromFavorites(Movie movie) {
-    var currentFavorites = getPrefsFavorites();
+    var currentFavorites = _getPrefsFavorites();
 
     currentFavorites.remove(json.encode(movie.toJson()));
     _preferences.setStringList(PrefsConstants.favoritesKey, currentFavorites);
   }
 
-  static List<String> getPrefsFavorites() {
+  static List<String> _getPrefsFavorites() {
     return _preferences.getStringList(PrefsConstants.favoritesKey) ?? [];
   }
 
   static List<Movie> getFavorites() {
     var favorites =
-        getPrefsFavorites().map((item) => json.decode(item)).toList();
+        _getPrefsFavorites().map((item) => json.decode(item)).toList();
     favorites = favorites.map((item) => Movie.fromJson(item)).toList();
 
     return favorites as List<Movie>;

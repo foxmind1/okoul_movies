@@ -21,14 +21,12 @@ class FavoriteMovieProvider extends ChangeNotifier {
   void _add(Movie movie) {
     _favoriteMovies.add(movie);
     PrefsServices.addToFavorites(movie);
-    debugPrint('Add called: $_favoriteMovies');
     notifyListeners();
   }
 
   void _remove(Movie movie) {
     _favoriteMovies.removeWhere((element) => element.id == movie.id);
     PrefsServices.removeFromFavorites(movie);
-    debugPrint('Remove called: $_favoriteMovies');
     notifyListeners();
   }
 

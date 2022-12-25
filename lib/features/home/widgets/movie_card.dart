@@ -14,11 +14,19 @@ class MovieCard extends StatelessWidget {
       child: GestureDetector(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            movie.posterLink!,
-            fit: BoxFit.fitHeight,
-            height: 225,
-          ),
+          child: movie.posterLink != null
+              ? FadeInImage(
+                  image: NetworkImage(movie.posterLink!),
+                  placeholder:
+                      const AssetImage('assets/images/image-placeholder.png'),
+                  fit: BoxFit.fitHeight,
+                  height: 225,
+                )
+              : Image.asset(
+                  'assets/images/image-placeholder.png',
+                  fit: BoxFit.fitHeight,
+                  height: 225,
+                ),
         ),
         onTap: () {
           Navigator.of(context).push(

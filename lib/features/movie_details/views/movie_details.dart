@@ -32,10 +32,19 @@ class MovieDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              movie.backdropLink!,
-              fit: BoxFit.fill,
-              opacity: const AlwaysStoppedAnimation(0.3),
+            Opacity(
+              opacity: 0.3,
+              child: movie.backdropLink != null
+                  ? FadeInImage(
+                      image: NetworkImage(movie.backdropLink!),
+                      placeholder: const AssetImage(
+                          'assets/images/image-placeholder.png'),
+                      fit: BoxFit.fill,
+                    )
+                  : Image.asset(
+                      'assets/images/image-placeholder.png',
+                      fit: BoxFit.fill,
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(

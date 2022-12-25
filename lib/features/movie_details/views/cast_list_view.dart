@@ -18,6 +18,9 @@ class CastListView extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             } else {
+              if (snapshot.data.isEmpty) {
+                return const Text("No cast data");
+              }
               return Row(
                 children: [
                   ...snapshot.data

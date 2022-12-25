@@ -16,9 +16,10 @@ class ApiServives {
         .toList();
   }
 
-  static Future<List<Movie>> getWeeklyTrending() async {
+  static Future<List<Movie>> getPlayingNow(String genre) async {
+    genre = genre == '0' ? '' : '&with_genres=$genre';
     final response = await http.get(
-      Uri.parse(ApiConstants.weeklyTrending),
+      Uri.parse("${ApiConstants.nowPlaying}$genre"),
     );
 
     return (jsonDecode(response.body)['results'] as List)
@@ -26,19 +27,10 @@ class ApiServives {
         .toList();
   }
 
-  static Future<List<Movie>> getPlayingNow() async {
+  static Future<List<Movie>> getUpcoming(String genre) async {
+    genre = genre == '0' ? '' : '&with_genres=$genre';
     final response = await http.get(
-      Uri.parse(ApiConstants.nowPlaying),
-    );
-
-    return (jsonDecode(response.body)['results'] as List)
-        .map((movie) => Movie.fromJson(movie))
-        .toList();
-  }
-
-  static Future<List<Movie>> getUpcoming() async {
-    final response = await http.get(
-      Uri.parse(ApiConstants.upcoming),
+      Uri.parse("${ApiConstants.upcoming}$genre"),
     );
 
     return (jsonDecode(response.body)['results'] as List)
@@ -56,16 +48,6 @@ class ApiServives {
 
     return (jsonDecode(response.body)['cast'] as List)
         .map((cast) => Cast.fromJson(cast))
-        .toList();
-  }
-
-  static Future<List> getGenres() async {
-    final response = await http.get(
-      Uri.parse(ApiConstants.genres),
-    );
-
-    return (jsonDecode(response.body)['genres'] as List)
-        .map((genre) => genre['name'])
         .toList();
   }
 }
