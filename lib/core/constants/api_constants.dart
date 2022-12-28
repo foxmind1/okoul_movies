@@ -6,19 +6,11 @@ class ApiConstants {
   static String weeklyTrending =
       "https://api.themoviedb.org/3/trending/movie/week?api_key=$apiKey";
 
-//TODO: Pagination & add genre
-
   static String upcoming =
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=$apiKey&page=1";
+      "https://api.themoviedb.org/3/movie/upcoming?api_key=$apiKey";
   static String nowPlaying =
-      "https://api.themoviedb.org/3/movie/now_playing?api_key=$apiKey&page=1";
-
-  static String byCategory =
-      "https://api.themoviedb.org/3/discover/movie?api_key=$apiKey&page=1&with_genres=";
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=$apiKey";
 
   static String cast =
       "https://api.themoviedb.org/3/movie//credits?api_key=$apiKey";
-
-  static String genres =
-      'https://api.themoviedb.org/3/genre/movie/list?api_key=$apiKey';
 }

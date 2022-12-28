@@ -21,10 +21,6 @@ void main() {
       ],
       child: const MyApp(),
     ),
-    // ChangeNotifierProvider(
-    //   create: (context) => FavoriteMovieProvider(),
-    //   child: const MyApp(),
-    // ),
   );
 }
 

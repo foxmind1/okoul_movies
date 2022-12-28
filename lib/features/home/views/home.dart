@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 16.0),
+                padding: const EdgeInsets.only(right: 0.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                     Row(
                       children: [
                         const Icon(Icons.search),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 8),
                         IconButton(
                           icon: const Icon(Icons.favorite),
                           onPressed: () => Navigator.of(context).push(
